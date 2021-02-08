@@ -2,7 +2,6 @@ let magic = new Magic(magic_wp.publishable_key_0);
 
 /* Render Sign-in. */
 const MagicSignIn = async () => {
-
   let html = ``;
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {

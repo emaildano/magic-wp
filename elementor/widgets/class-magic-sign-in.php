@@ -59,7 +59,7 @@ class MagicSignIn extends Widget_Base
 	</form>
 </div>',
 				'authorized' => '<div>
-<p>Current user: ${userMetadata.email}</p>
+<p>Current user: <span data-magic-meta="user-email">${magic.user.email}</span></p>
 <button onclick="handleLogout()">Logout</button>
 </div>',
 			]
