@@ -127,6 +127,12 @@ final class Magic
 		);
 	}
 
+	/**
+	 * Sanitize options.
+	 *
+	 * @since 0.0.0
+	 * @access public
+	 */
 	public function magic_sanitize($input)
 	{
 		$sanitary_values = array();
@@ -141,10 +147,22 @@ final class Magic
 		return $sanitary_values;
 	}
 
+	/**
+	 * Section template.
+	 *
+	 * @since 0.0.0
+	 * @access public
+	 */
 	public function magic_section_info()
 	{
 	}
 
+	/**
+	 * Option: Publishable Key Callback.
+	 *
+	 * @since 0.0.0
+	 * @access public
+	 */
 	public function publishable_key_0_callback()
 	{
 		printf(
@@ -153,6 +171,12 @@ final class Magic
 		);
 	}
 
+	/**
+	 * Option: Redirect URI Callback.
+	 *
+	 * @since 0.0.0
+	 * @access public
+	 */
 	public function redirect_uri_0_callback()
 	{
 		printf(
