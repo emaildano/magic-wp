@@ -1,9 +1,9 @@
-/* Magic Instance */
 let magic = new Magic(magic_wp.publishable_key_0);
 
-/* Render Function */
+/* Render Sign-in. */
 const render = async () => {
-  let html = "";
+
+  let html = ``;
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {
     try {
@@ -13,10 +13,7 @@ const render = async () => {
       /* Get user metadata including email */
       const userMetadata = await magic.user.getMetadata();
 
-      html = `
-         <h1>Current user: ${userMetadata.email}</h1>
-         <button onclick="handleLogout()">Logout</button>
-       `;
+      html = settings.templates.authorized;
     } catch {
       window.location.href = window.location.origin;
     }
@@ -24,26 +21,17 @@ const render = async () => {
     const isLoggedIn = await magic.user.isLoggedIn();
 
     /* Show login form if user is not logged in */
-    html = `
-       <h1>Please sign up or login</h1>
-       <form onsubmit="handleLogin(event)">
-         <input type="email" name="email" required="required" placeholder="Enter your email" />
-         <button type="submit">Send</button>
-       </form>
-     `;
+    html = settings.templates.unauthorized;
 
     if (isLoggedIn) {
       /* Get user metadata including email */
       const userMetadata = await magic.user.getMetadata();
-      html = `
-         <h1>Current user: ${userMetadata.email}</h1>
-         <button onclick="handleLogout()">Logout</button>
-       `;
+      html = settings.templates.authorized;
     }
   }
 
-  if (document.getElementById("magic")) {
-    document.getElementById("magic").innerHTML = html;
+  if (document.getElementById("magic-sign-in")) {
+    document.getElementById("magic-sign-in").innerHTML = html;
   }
 };
 
