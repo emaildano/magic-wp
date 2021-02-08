@@ -1,7 +1,7 @@
 let magic = new Magic(magic_wp.publishable_key_0);
 
 /* Render Sign-in. */
-const render = async () => {
+const MagicSignIn = async () => {
 
   let html = ``;
 
@@ -52,4 +52,4 @@ const handleLogout = async () => {
   render();
 };
 
-render();
+MagicSignIn();
