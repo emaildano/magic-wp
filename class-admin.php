@@ -172,15 +172,3 @@ if (is_admin())
  * $magic_options = get_option( 'magic_option_name' ); // Array of All Options
  * $publishable_key_0 = $magic_options['publishable_key_0']; // Publishable Key
  */
-
-
-$magic_options = get_option('magic_option_name');
-wp_localize_script('magic-sdk', 'magic_wp', $magic_options);
-
-function magic_scripts()
-{
-  wp_enqueue_script('magic-sdk');
-  wp_enqueue_script('magic-wp', plugin_dir_url(__FILE__) . 'main.js', array('magic-sdk',), false);
-}
-
-add_action('wp_enqueue_scripts', 'magic_scripts');
