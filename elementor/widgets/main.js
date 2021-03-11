@@ -2,7 +2,7 @@ let magic = new Magic(magic_wp.publishable_key_0);
 
 /* Render Sign-in. */
 const MagicSignIn = async () => {
-  let html = ``;
+  let html = '';
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {
     try {
@@ -23,6 +23,7 @@ const MagicSignIn = async () => {
     html = settings.templates.unauthorized;
 
     if (isLoggedIn) {
+      // window.location = "https://example.com";
       /* Get user metadata including email */
       const userMetadata = await magic.user.getMetadata();
       html = settings.templates.authorized;
