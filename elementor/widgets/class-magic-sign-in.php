@@ -51,10 +51,11 @@ class MagicSignIn extends Widget_Base
 
 		$config = array(
 			'templates' => [
-				'unauthorized' => '<form onsubmit="handleLogin(event)">
+				'unauthorized' => '<div class="magic-sign-in">
+				<form onsubmit="handleLogin(event)">
 		<input type="email" name="email" required="required" placeholder="Enter your email" />
 		<button type="submit">Sign-in</button>
-	</form>',
+	</form></div>',
 				'authorized' => '<p>Current user: <span data-magic-meta="user-email">${magic.user.email}</span></p>
 <button onclick="handleLogout()">Logout</button>',
 			]

@@ -1,32 +1,28 @@
 let magic = new Magic(magic_wp.publishable_key_0);
+let authorized = false;
+const authorizedTemplate = settings.templates.authorized;
+const unauthorizedTemplate = settings.templates.unauthorized;
 
-/* Render Sign-in. */
+// Magic Sign-in
 const MagicSignIn = async () => {
-  let html = '';
+  let html = "";
 
   if (window.location.pathname === magic_wp.redirect_uri_0) {
     try {
-      /* Complete the "authentication callback" */
       await magic.auth.loginWithCredential();
-
-      /* Get user metadata including email */
       const userMetadata = await magic.user.getMetadata();
-
-      html = settings.templates.authorized;
+      html = authorizedTemplate;
     } catch {
       window.location.href = window.location.origin;
     }
   } else {
     const isLoggedIn = await magic.user.isLoggedIn();
 
-    /* Show login form if user is not logged in */
-    html = settings.templates.unauthorized;
+    html = unauthorizedTemplate;
 
     if (isLoggedIn) {
-      // window.location = "https://example.com";
-      /* Get user metadata including email */
       const userMetadata = await magic.user.getMetadata();
-      html = settings.templates.authorized;
+      html = authorizedTemplate;
     }
   }
 
@@ -52,4 +48,28 @@ const handleLogout = async () => {
   render();
 };
 
-MagicSignIn();
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (jQuery("#magic-sign-in").length > 0) {
+    MagicSignIn();
+  }
+});
+
+// Magic Private
+const MagicPrivate = async () => {
+  let html = "";
+
+  const isLoggedIn = await magic.user.isLoggedIn();
+  if (!isLoggedIn) {
+    html = unauthorizedTemplate;
+  }
+
+  if (document.getElementById("magic-private")) {
+    document.getElementById("magic-private").innerHTML = html;
+  }
+};
+
+document.addEventListener("DOMContentLoaded", function (event) {
+  if (jQuery("#magic-private").length > 0) {
+    return MagicPrivate();
+  }
+});
