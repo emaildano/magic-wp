@@ -64,7 +64,7 @@ const MagicPrivate = async () => {
   }
 
   if (document.getElementById("magic-private")) {
-    document.getElementById("magic-private").innerHTML = html;
+    document.querySelector("#magic-private").innerHTML = html;
   }
 };
 
